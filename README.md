@@ -43,6 +43,11 @@ To generate the makefiles or solutions run the `premake4` executable in the dire
 
 The makefiles or solutions will be put into the `BuildClang` folder on MacOS X and `Build` otherwise.
 
+an example project
+------------------
+
+Here's a project using this component: [selfdestructing](https://github.com/d-led/selfdestructing).
+
 premake4
 --------
 

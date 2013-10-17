@@ -76,11 +76,6 @@ local actions = {
 				platforms { "native" }
 				libdirs ( cfg.libdirs )
 				includedirs ( cfg.includedirs )
-				includedirs { 
-					[[./cppspec/include]],
-					[[./googlemock/fused-src]],
-					[[./cucumber-cpp/include]]
-				}
 				vpaths {
 					["Headers"] = {"**.h","**.hpp"},
 					["Sources"] = {"**.c", "**.cpp"},

@@ -96,5 +96,39 @@ actions.make_console_app = function (name,files_,extras)
 	actions.make_project("ConsoleApp",name,files_,extras)
 end
 ----------------------------------------------------------------------------------------------------------------
+-- run the tests automatically
+actions.run_target_after_build = function ()
+	configuration {"xcode*" }
+		postbuildcommands {"$TARGET_BUILD_DIR/$TARGET_NAME"}
+
+	configuration {"gmake"}
+		postbuildcommands  { "$(TARGET)" }
+
+	configuration {"macosx"}
+		postbuildcommands  { "$(TARGET)" }
+
+	configuration {"codeblocks" }
+		postbuildcommands { "$(TARGET_OUTPUT_FILE)"}
+
+	configuration { "vs*"}
+		postbuildcommands { "\"$(TargetPath)\"" }
+
+	configuration { "*" }
+end
+----------------------------------------------------------------------------------------------------------------
+-- c++11 options
+actions.make_cpp11 = function ()
+	configuration {"gmake"}
+		postbuildcommands  { "$(TARGET)" }
+		buildoptions { "-std=c++11" }
+		links { "pthread" }
+
+	configuration {"macosx"}
+		postbuildcommands  { "$(TARGET)" }
+		buildoptions { "-stdlib=libc++ -std=c++11" }
+		links { "c++" }
+
+	configuration { "*" }
+end
 
 return actions

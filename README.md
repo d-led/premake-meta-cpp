@@ -3,6 +3,8 @@ premake meta c++
 
 For most of my c++ projects I use premake4 as the meta-build system to generate platform-specific makefiles. This project is a collection of repeated patterns extracted from various projects to speedup the initial build environment setup.
 
+I could have used [automake](http://www.gnu.org/software/automake/), [cmake](http://www.cmake.org/) or [QMake](http://qt-project.org/doc/qt-5.0/qtdoc/qmake-project-files.html), but the eunoia of [Lua](http://www.lua.org/), having only one small executable as your pocket knife is just too appealing.
+
 usage
 -----
 
@@ -38,6 +40,8 @@ links { "some_lib" }
 Premake performs a linear run of the `premake4.lua` file, and many of the settings, such as build options, include directories, source files, etc., can be appended by the respective premake4 command.
 
 To generate the makefiles or solutions run the `premake4` executable in the directory where `premake4.lua` is located.
+
+The makefiles or solutions will be put into the `BuildClang` folder on MacOS X and `Build` otherwise.
 
 premake4
 --------

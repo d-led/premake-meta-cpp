@@ -43,6 +43,22 @@ To generate the makefiles or solutions run the `premake4` executable in the dire
 
 The makefiles or solutions will be put into the `BuildClang` folder on MacOS X and `Build` otherwise.
 
+a yet quicker start
+-------------------
+
+A yet more compact slice of premake patterns is `quickstart.lua`, allowing yet simpler project definitions by declaring the actions globally. Other premake4 commands are still usable normally. Example, showing all globally available pattern functions and the standard premake4 function `links` in action:
+
+```lua
+assert( require 'premake.quickstart' )
+
+make_solution 'my_lib'
+make_static_lib( 'my_lib', './src/my_lib.cpp')
+make_console_app( 'test', './src/test.cpp" )
+links { 'my_lib' }
+make_cpp11()
+run_target_after_build()
+```
+
 an example project
 ------------------
 

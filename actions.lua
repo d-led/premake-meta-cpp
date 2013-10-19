@@ -87,6 +87,10 @@ actions.make_static_lib = function(name,files_,extras)
 	actions.make_project("StaticLib",name,files_,extras)
 end
 ----------------------------------------------------------------------------------------------------------------
+actions.make_shared_lib = function(name,files_,extras)
+	actions.make_project("SharedLib",name,files_,extras)
+end
+----------------------------------------------------------------------------------------------------------------
 actions.make_console_app = function (name,files_,extras)
 	actions.make_project("ConsoleApp",name,files_,extras)
 end

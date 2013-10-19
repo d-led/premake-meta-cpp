@@ -12,6 +12,7 @@ Add this project as a submodule or copy as a subdirectory of your project. Consi
 
 
 ```lua
+_G.package.path=_G.package.path..[[;./?.lua;./?/?.lua]]
 -- some global run-time platform-specific configuration objects
 cfg = assert( require 'premake.config' )
 actions = assert( require 'premake.actions' )
@@ -49,6 +50,7 @@ a yet quicker start
 A yet more compact slice of premake patterns is `quickstart.lua`, allowing yet simpler project definitions by declaring the actions globally. Other premake4 commands are still usable normally. Example, showing all globally available pattern functions and the standard premake4 function `links` in action:
 
 ```lua
+_G.package.path=_G.package.path..[[;./?.lua;./?/?.lua]]
 assert( require 'premake.quickstart' )
 
 make_solution 'my_lib'

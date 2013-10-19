@@ -85,4 +85,30 @@ util.start_cucumber_for = function(path_,executable)
 	os.chdir( od )
 end
 
+util.start_cucumber = function(configuration)
+	assert( type(configuration) == "table" )
+	local od = os.getcwd()
+	
+	if type(configuration.start_in) == "string" then
+		local p = path.join(od,configuration.start_in)
+		os.chdir(p)
+	end
+	
+	assert( type(configuration.executable) == "string" )
+
+	local feature = ''
+	if type(configuration.feature) == "string" then
+		feature = ' ' .. configuration.feature
+	end
+
+	if os.get() == "linux" or os.get() == "Darwin" or os.get() == "macosx" then
+		local command = configuration.executable.." > /dev/null & cucumber" .. feature
+		os.execute( command )
+    elseif os.get() == "windows" then
+        os.execute("start /B "..executable)
+        os.execute( "cucumber" .. feature )
+	end
+	os.chdir( od )
+end
+
 return util

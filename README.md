@@ -55,7 +55,7 @@ assert( require 'premake.quickstart' )
 
 make_solution 'my_lib'
 make_static_lib( 'my_lib', './src/my_lib.cpp')
-make_console_app( 'test', './src/test.cpp" )
+make_console_app( 'test', './src/test.cpp' )
 links { 'my_lib' }
 make_cpp11()
 run_target_after_build()

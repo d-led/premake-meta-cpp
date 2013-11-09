@@ -5,8 +5,20 @@ For most of my c++ projects I use premake4 as the meta-build system to generate 
 
 I could have used [automake](http://www.gnu.org/software/automake/), [cmake](http://www.cmake.org/) or [QMake](http://qt-project.org/doc/qt-5.0/qtdoc/qmake-project-files.html), but the eunoia of [Lua](http://www.lua.org/), having only one small executable as your pocket knife is just too appealing.
 
-usage
------
+super quick start
+-----------------
+
+### *x
+
+Download [new_cpp.sh](https://raw.github.com/d-led/premake-meta-cpp/master/new_cpp.sh) and make it globally executable.
+
+- `new_cpp.sh project_name` to make the directory, init a git repo, add the premake submodule, the quickstart config and the first source file
+- Change into the created directory
+- `premake4 _build_system_` to generate your make or project files
+- Build
+
+normal usage
+------------
 
 Add this project as a submodule or copy as a subdirectory of your project. Considering, the folder is named `premake`, a typical `premake4.lua` configuration would look like
 
@@ -44,8 +56,8 @@ To generate the makefiles or solutions run the `premake4` executable in the dire
 
 The makefiles or solutions will be put into the `BuildClang` folder on MacOS X and `Build` otherwise.
 
-a yet quicker start
--------------------
+a quick start
+-------------
 
 A yet more compact slice of premake patterns is `quickstart.lua`, allowing yet simpler project definitions by declaring the actions globally. Other premake4 commands are still usable normally. Example, showing all globally available pattern functions and the standard premake4 function `links` in action:
 

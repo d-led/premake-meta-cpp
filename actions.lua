@@ -118,12 +118,10 @@ end
 -- c++11 options
 actions.make_cpp11 = function ()
 	configuration {"gmake"}
-		postbuildcommands  { "$(TARGET)" }
 		buildoptions { "-std=c++0x" }
 		links { "pthread" }
 
 	configuration {"macosx"}
-		postbuildcommands  { "$(TARGET)" }
 		buildoptions { "-stdlib=libc++ -std=c++11" }
 		links { "c++" }
 

@@ -1,3 +1,13 @@
+**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+
+- [premake meta c++](#premake-meta-c++)
+	- [super quick start](#super-quick-start)
+		- [*x](#x)
+	- [normal usage](#normal-usage)
+	- [a quick start](#a-quick-start)
+	- [an example project](#an-example-project)
+	- [premake4](#premake4)
+
 premake meta c++
 ================
 

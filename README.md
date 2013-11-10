@@ -2,7 +2,6 @@
 
 - [premake meta c++](#premake-meta-c++)
 	- [super quick start](#super-quick-start)
-		- [*x](#x)
 	- [normal usage](#normal-usage)
 	- [a quick start](#a-quick-start)
 	- [an example project](#an-example-project)
@@ -18,9 +17,7 @@ I could have used [automake](http://www.gnu.org/software/automake/), [cmake](htt
 super quick start
 -----------------
 
-### *x
-
-Download [new_cpp.sh](https://raw.github.com/d-led/premake-meta-cpp/master/new_cpp.sh) and make it globally executable.
+Download [new_cpp.sh](https://raw.github.com/d-led/premake-meta-cpp/master/new_cpp.sh) or [new_cpp.bat](https://raw.github.com/d-led/premake-meta-cpp/master/new_cpp.bat) and make it globally executable.
 
 - `new_cpp.sh project_name` to make the directory, init a git repo, add the premake submodule, the quickstart config and the first source file
 - Change into the created directory

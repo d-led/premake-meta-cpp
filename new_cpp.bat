@@ -14,3 +14,5 @@ echo make_console_app('%1', { '%1.cpp' }) >> premake4.lua
 echo make_cpp11() >> premake4.lua
 
 echo int main() {} >> %1.cpp
+
+copy premake\initial\gitignore .gitignore /C

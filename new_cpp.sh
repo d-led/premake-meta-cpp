@@ -13,3 +13,5 @@ echo "make_console_app('"$1"', { '"$1".cpp' })"$'\n' >> premake4.lua
 echo "make_cpp11()"$'\n' >> premake4.lua
 
 echo "int main() {}"$'\n' >> $1.cpp
+
+cp premake/initial/gitignore .gitignore

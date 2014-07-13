@@ -1,7 +1,7 @@
 cfg = assert( require 'premake.config' )
 actions = assert( require 'premake.actions' )
 util = assert( require 'premake.util' )
-patterns = assert( require 'patterns' )
+patterns = assert( require 'premake.patterns' )
 
 _G.make_solution = actions.make_solution
 _G.make_console_app = actions.make_console_app

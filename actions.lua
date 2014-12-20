@@ -1,18 +1,27 @@
 _G.package.path=[[./?.lua;./?/?.lua;]].._G.package.path
+
 local config = require 'config'
 local actions = {
-	make_project = function (project_type,name,files_)
+	make_project = function (project_type,name,files_,language_)
 		project(name)
 		kind(project_type)
 		files(files_)
+		language(language_ or 'C++')
 	end
 
 	,
 
 	make_solution = function (name)
-		solution (name)
+		solution(name)
+
+		if config.get_location then 
+			location ( config:get_location() )
+		else
+			location ( 'Build' )
+		end
+
 		configurations ( config.configurations or { 'Debug', 'Release' } )
-		platforms ( config.platforms or { 'Win32', 'Win64' } )
+		platforms ( config.platforms or { "x32", "x64" } )
 	end
 }
 

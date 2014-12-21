@@ -11,6 +11,14 @@ local configs = function()
 	return res
 end
 
+local plats = function()
+	local res = platforms()
+	if _PREMAKE_VERSION:sub(1,1) ~= '4' then --wait for official premake5
+		res = { "x32", "x64", "native" }
+	end
+	return res
+end
+
 actions.default_config = function ()
 	configuration "Debug"
 		defines { "DEBUG", "_DEBUG" }
@@ -23,8 +31,8 @@ actions.default_config = function ()
 	if config.get_objects_location then
 		local project_name = project().name
 		objdir ( config:get_objects_location('','',project_name) )
-		for _, plat_ in ipairs(platforms() or {''}) do
-			for __, config_ in ipairs( configs()) do
+		for _, plat_ in ipairs(plats() or {''}) do
+			for __, config_ in ipairs( configs() ) do
 			    configuration { plat_, config_ }
 			    	local loc_ = config:get_objects_location(plat_,config_,project_name)
 			        objdir ( loc_ )
@@ -58,11 +66,15 @@ actions.make_solution = function (name)
 
 	------------------------------------
 	if config.get_binaries_location then
-		targetdir ( config:get_binaries_location() )
-		for _, plat_ in ipairs(platforms() or {''}) do
+		local loc = config:get_binaries_location()
+		targetdir ( loc )
+		for _, plat_ in ipairs(plats() or {''}) do
 			for __, config_ in ipairs( configs() ) do
 			    configuration { plat_, config_ }
-			        targetdir ( config:get_binaries_location(plat_,config_) )
+			    	print(plat_,config_)
+			    	local loc = config:get_binaries_location(plat_,config_)
+			    	print(loc)
+			        targetdir ( loc )
 			end
 		end
 	end

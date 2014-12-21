@@ -3,6 +3,14 @@ _G.package.path=[[./?.lua;./?/?.lua;]].._G.package.path
 local config = require 'config'
 local actions = {}
 
+local configs = function()
+	local res = configurations()
+	if _PREMAKE_VERSION:sub(1,1) ~= '4' then --wait for official premake5
+		res = { 'Debug', 'Release' }
+	end
+	return res
+end
+
 actions.default_config = function ()
 	configuration "Debug"
 		defines { "DEBUG", "_DEBUG" }
@@ -16,10 +24,9 @@ actions.default_config = function ()
 		local project_name = project().name
 		objdir ( config:get_objects_location('','',project_name) )
 		for _, plat_ in ipairs(platforms() or {''}) do
-			for __, config_ in ipairs(configurations()) do
+			for __, config_ in ipairs( configs()) do
 			    configuration { plat_, config_ }
 			    	local loc_ = config:get_objects_location(plat_,config_,project_name)
-			    	print (loc_)
 			        objdir ( loc_ )
 			end
 		end
@@ -53,7 +60,7 @@ actions.make_solution = function (name)
 	if config.get_binaries_location then
 		targetdir ( config:get_binaries_location() )
 		for _, plat_ in ipairs(platforms() or {''}) do
-			for __, config_ in ipairs(configurations()) do
+			for __, config_ in ipairs( configs() ) do
 			    configuration { plat_, config_ }
 			        targetdir ( config:get_binaries_location(plat_,config_) )
 			end

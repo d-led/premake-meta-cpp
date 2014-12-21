@@ -33,6 +33,10 @@ local actions = {
 		solution(name)
 
 		------------------------------------
+		configurations ( config.configurations or { 'Debug', 'Release' } )
+		platforms ( config.platforms or { "x32", "x64" } )
+
+		------------------------------------
 		if config.get_location then 
 			location ( config:get_location() )
 		else
@@ -40,16 +44,16 @@ local actions = {
 		end
 
 		------------------------------------
-		if config.get_binaries_location then 
+		if config.get_binaries_location then
 			targetdir ( config:get_binaries_location() )
-		else
-			targetdir ( 'bin' )
+			for _, plat_ in ipairs(platforms() or {''}) do
+				for __, config_ in ipairs(configurations()) do
+				    configuration { plat_, config_ }
+				        targetdir ( config:get_binaries_location(plat_,config_) )
+					configuration "*" --reset
+				end
+			end
 		end
-
-		------------------------------------
-		configurations ( config.configurations or { 'Debug', 'Release' } )
-
-		platforms ( config.platforms or { "x32", "x64" } )
 	end
 }
 

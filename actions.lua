@@ -1,61 +1,66 @@
 _G.package.path=[[./?.lua;./?/?.lua;]].._G.package.path
 
 local config = require 'config'
-local actions = {
+local actions = {}
 
-	default_config = function ()
-		location( cfg.location )
-		configuration "Debug"
-			defines { "DEBUG", "_DEBUG" }
-			objdir( path.join(cfg.location, path.join("Debug", "obj") ) )
-			targetdir ( cfg.debug_target_dir )
-			flags { "Symbols" }
-		configuration "Release"
-			defines { "RELEASE" }
-			objdir( path.join(cfg.location, path.join("Release", "obj") ) )
-			targetdir( cfg.release_target_dir )
-			flags { "Optimize" }
-		configuration "*" -- reset configuration filter
-	end
+actions.default_config = function ()
+	configuration "Debug"
+		defines { "DEBUG", "_DEBUG" }
+		flags { "Symbols" }
+	configuration "Release"
+		defines { "RELEASE" }
+		flags { "Optimize" }
+	configuration "*" -- reset configuration filter
 
-	,
-
-	make_project = function (project_type,name,files_,language_)
-		project(name)
-		kind(project_type)
-		files(files_)
-		language(language_ or 'C++')
-	end
-
-	,
-
-	make_solution = function (name)
-		solution(name)
-
-		------------------------------------
-		configurations ( config.configurations or { 'Debug', 'Release' } )
-		platforms ( config.platforms or { "x32", "x64" } )
-
-		------------------------------------
-		if config.get_location then 
-			location ( config:get_location() )
-		else
-			location ( 'Build' )
-		end
-
-		------------------------------------
-		if config.get_binaries_location then
-			targetdir ( config:get_binaries_location() )
-			for _, plat_ in ipairs(platforms() or {''}) do
-				for __, config_ in ipairs(configurations()) do
-				    configuration { plat_, config_ }
-				        targetdir ( config:get_binaries_location(plat_,config_) )
-					configuration "*" --reset
-				end
+	if config.get_objects_location then
+		local project_name = project().name
+		objdir ( config:get_objects_location('','',project_name) )
+		for _, plat_ in ipairs(platforms() or {''}) do
+			for __, config_ in ipairs(configurations()) do
+			    configuration { plat_, config_ }
+			    	local loc_ = config:get_objects_location(plat_,config_,project_name)
+			    	print (loc_)
+			        objdir ( loc_ )
 			end
 		end
 	end
-}
+	configuration "*" --reset
+end
+
+actions.make_project = function (project_type,name,files_,language_)
+	project(name)
+	kind(project_type)
+	files(files_)
+	language(language_ or 'C++')
+	actions.default_config()
+end
+
+actions.make_solution = function (name)
+	solution(name)
+
+	------------------------------------
+	configurations ( config.configurations or { 'Debug', 'Release' } )
+	platforms ( config.platforms or { "x32", "x64" } )
+
+	------------------------------------
+	if config.get_location then 
+		location ( config:get_location() )
+	else
+		location ( 'Build' )
+	end
+
+	------------------------------------
+	if config.get_binaries_location then
+		targetdir ( config:get_binaries_location() )
+		for _, plat_ in ipairs(platforms() or {''}) do
+			for __, config_ in ipairs(configurations()) do
+			    configuration { plat_, config_ }
+			        targetdir ( config:get_binaries_location(plat_,config_) )
+			end
+		end
+	end
+	configuration "*" --reset
+end
 
 ----------------------------------------------------------------------------------------------------------------
 actions.make_static_lib = function(name,files_)

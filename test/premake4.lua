@@ -1,5 +1,7 @@
-_G.package.path=_G.package.path..[[;./?.lua;../?.lua;../?/?.lua]] 
-assert( require 'quickstart' ) 
+include '..'
+
+config.location_pattern = [[CustomBuild/%o/%v/%t]]
+
 make_solution 'test'
 make_console_app('test', { 'test.cpp' }) 
 use_standard('c++11') 

@@ -4,7 +4,7 @@ local function make_global(m)
 		_G[k] = v
 	end
 end
-local config = assert( require 'config' )
+config = assert( require 'config' )
 local actions = assert( require 'actions' )
 make_global ( config )
 make_global ( actions )

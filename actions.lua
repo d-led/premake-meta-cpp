@@ -2,6 +2,24 @@ _G.package.path=[[./?.lua;./?/?.lua;]].._G.package.path
 
 local config = require 'config'
 local actions = {
+
+	default_config = function ()
+		location( cfg.location )
+		configuration "Debug"
+			defines { "DEBUG", "_DEBUG" }
+			objdir( path.join(cfg.location, path.join("Debug", "obj") ) )
+			targetdir ( cfg.debug_target_dir )
+			flags { "Symbols" }
+		configuration "Release"
+			defines { "RELEASE" }
+			objdir( path.join(cfg.location, path.join("Release", "obj") ) )
+			targetdir( cfg.release_target_dir )
+			flags { "Optimize" }
+		configuration "*" -- reset configuration filter
+	end
+
+	,
+
 	make_project = function (project_type,name,files_,language_)
 		project(name)
 		kind(project_type)
@@ -14,13 +32,23 @@ local actions = {
 	make_solution = function (name)
 		solution(name)
 
+		------------------------------------
 		if config.get_location then 
 			location ( config:get_location() )
 		else
 			location ( 'Build' )
 		end
 
+		------------------------------------
+		if config.get_binaries_location then 
+			targetdir ( config:get_binaries_location() )
+		else
+			targetdir ( 'bin' )
+		end
+
+		------------------------------------
 		configurations ( config.configurations or { 'Debug', 'Release' } )
+
 		platforms ( config.platforms or { "x32", "x64" } )
 	end
 }

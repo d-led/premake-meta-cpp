@@ -71,7 +71,6 @@ actions.make_solution = function (name)
 		for _, plat_ in ipairs(plats() or {''}) do
 			for __, config_ in ipairs( configs() ) do
 			    configuration { plat_, config_ }
-			    	print(plat_,config_)
 			    	local loc = config:get_binaries_location(plat_,config_)
 			    	print(loc)
 			        targetdir ( loc )

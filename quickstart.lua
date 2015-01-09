@@ -1,10 +1,16 @@
 -- an evil shortcut
-local function make_global(m)
-	for k,v in pairs(m) do
-		_G[k] = v
+local function make_global(name)
+	local m = assert( require(name) )
+	_G[name] = m
+	for entry_name,value in pairs(m) do
+		_G[entry_name] = value
 	end
 end
-config = assert( require 'config' )
-local actions = assert( require 'actions' )
-make_global ( config )
-make_global ( actions )
+
+for _,name in ipairs {
+	'config',
+	'actions',
+	'release'
+} do
+	make_global(name)
+end

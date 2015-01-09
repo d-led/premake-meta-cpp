@@ -1,6 +1,7 @@
 local patterns = {}
 
 patterns.make_package = function(files_to_package,filename_without_extension)
+	print 'package with: premake4 package'
 	newaction {
 	        trigger     = 'package',
 	        description = 'prepare a binary release',

@@ -121,7 +121,7 @@ end
 actions.make_cpp11 = function() actions.use_standard("c++11") end
 ----------------------------------------------------------------------------------------------------------------
 actions.get_recipe = function(name)
-	return assert(dofile './premake/recipes/'..name..'.lua')
+	return assert(dofile 'recipes/'..name..'.lua')
 end
 ----------------------------------------------------------------------------------------------------------------
 

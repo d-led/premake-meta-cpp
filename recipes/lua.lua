@@ -16,4 +16,16 @@ local lua = {
     }
 }
 
+lua.set_includedirs = function(self)
+    includedirs( self.includedirs[os.get()] )
+end
+
+lua.set_libdirs = function(self)
+    libdirs( self.libdirs[os.get()] )
+end
+
+lua.set_links = function(self)
+    links( self.links[os.get()] )
+end
+
 return lua

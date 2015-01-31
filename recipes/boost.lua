@@ -22,7 +22,28 @@ local boost = {
         windows = [[%b/lib%p-%t-%v]],
         macosx = ''
     },
+
+    defines = {
+        linux = {},
+        windows = {
+        	'_WIN32_WINNT=0x0501',
+			'WIN32',
+        },
+        macosx = {}
+    },
 }
+
+boost.set_links = function(self)
+    links( self.links[os.get()] )
+end
+
+boost.set_defines = function(self)
+    defines( self.defines[os.get()] )
+end
+
+boost.set_includedirs = function(self)
+    includedirs( self.includedirs[os.get()] )
+end
 
 boost.set_libdirs = function(self)
     local action = _ACTION
@@ -64,5 +85,7 @@ boost.set_libdirs = function(self)
         configuration '*'
     end
 end
+
+boost.libdirs = boost.set_libdirs
 
 return boost

@@ -86,6 +86,4 @@ boost.set_libdirs = function(self)
     end
 end
 
-boost.libdirs = boost.set_libdirs
-
 return boost

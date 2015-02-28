@@ -48,7 +48,7 @@ end
 boost.set_libdirs = function(self)
     local action = _ACTION
     local OS = os.get()
-    local vs = tonumber(string.match(action,'vs20(%d+)'))
+    local vs = tonumber(string.match(action or '', 'vs20(%d+)'))
 
     if not vs then
         libdirs(self.libdirs[OS])

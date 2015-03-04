@@ -100,9 +100,6 @@ actions.run_target_after_build = function ()
 	configuration {"gmake"}
 		postbuildcommands  { "$(TARGET)" }
 
-	configuration {"macosx"}
-		postbuildcommands  { "$(TARGET)" }
-
 	configuration {"codeblocks" }
 		postbuildcommands { "$(TARGET_OUTPUT_FILE)"}
 

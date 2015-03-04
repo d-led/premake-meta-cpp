@@ -115,7 +115,9 @@ end
 actions.use_standard = function (standard)
 	configuration {"gmake"}
 		buildoptions { "-std="..standard }
-
+	configuration {"xcode*"}
+		buildoptions { "-std="..standard }
+		linkoptions "-stdlib=libc++"
 	configuration { "*" }
 end
 actions.make_cpp11 = function() actions.use_standard("c++11") end

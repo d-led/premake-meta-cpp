@@ -1,7 +1,7 @@
 premake patterns
 ================
 
-For most of my c++ projects I use [premake](https://bitbucket.org/premake/premake-dev/wiki/Home) as the meta-build system to generate platform-specific build files. This project is a collection of repeated patterns extracted from various projects to speed up the initial build environment setup.
+For most of my c++ projects I use [premake](http://premake.github.io/) as the meta-build system to generate platform-specific build files. This project is a collection of repeated patterns extracted from various projects to speed up the initial build environment setup.
 
 I could have used [automake](http://www.gnu.org/software/automake/), [cmake](http://www.cmake.org/) or [QMake](http://qt-project.org/doc/qt-5.0/qtdoc/qmake-project-files.html), but the eunoia of [Lua](http://www.lua.org/), having only one small executable as your pocket knife is just too appealing.
 

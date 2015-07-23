@@ -21,10 +21,10 @@ end
 
 actions.default_config = function ()
 	configuration "Debug"
-		defines { "DEBUG", "_DEBUG" }
+		defines { "_DEBUG" }
 		flags { "Symbols" }
 	configuration "Release"
-		defines { "RELEASE" }
+		-- defines { "_RELEASE" }
 		flags { "Optimize" }
 	configuration "*" -- reset configuration filter
 

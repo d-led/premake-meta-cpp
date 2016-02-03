@@ -7,6 +7,8 @@ I could have used [automake](http://www.gnu.org/software/automake/), [cmake](htt
 
 This project includes premake binaries and is build around premake, but is otherwise not affiliated with premake development. Its primary goal is providing a number of patterns for build file locations and similar simplifications.
 
+This repository should look somewhat different, as premake5 makes many things much easier.
+
 a quick start
 -------------
 

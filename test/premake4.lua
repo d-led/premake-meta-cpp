@@ -8,7 +8,11 @@ boost = assert(dofile '../recipes/boost.lua')
 -------------
 make_solution 'test'
 
-platforms { "native","x32", "x64" }
+platforms { "x32", "x64" }
+
+configuration 'not windows'
+    platforms { 'native' }
+configuration '*'
 
 boost:set_defines()
 boost:set_includedirs()

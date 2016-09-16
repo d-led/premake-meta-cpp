@@ -4,7 +4,7 @@ local boost = {
         windows = { },
         macosx = { 'boost_system' }
     },
-    
+
     libdirs = {
         linux = {},
         windows = {},
@@ -13,7 +13,7 @@ local boost = {
 
     includedirs = {
         linux = {},
-        windows = { os.getenv 'BOOST' },
+        windows = { "$(BOOST)" },
         macosx = { '/usr/local/include' }
     },
 
@@ -59,7 +59,7 @@ boost.set_libdirs = function(self)
 
     local render = function(pl)
         local substitutions = {
-            ['%b'] = os.getenv 'BOOST',
+            ['%b'] = "$(BOOST)",
             ['%p'] = pl,
             ['%t'] = 'msvc',
             ['%v'] = vc

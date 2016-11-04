@@ -14,7 +14,7 @@ end
 local plats = function()
 	local res = platforms()
 	if _PREMAKE_VERSION:sub(1,1) ~= '4' then --wait for official premake5
-		res = { "x32", "x64", "native", "arm" }
+		res = { "x32", "x64", "native" }
 	end
 	return res
 end
@@ -55,10 +55,10 @@ actions.make_solution = function (name)
 
 	------------------------------------
 	configurations ( config.configurations or { 'Debug', 'Release' } )
-	platforms ( config.platforms or { "x32", "x64", "arm" } )
+	platforms ( config.platforms or { "x32", "x64" } )
 
 	------------------------------------
-	if config.get_location then
+	if config.get_location then 
 		location ( config:get_location() )
 	else
 		location ( 'Build' )

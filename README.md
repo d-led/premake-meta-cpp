@@ -40,6 +40,6 @@ Here's a project using this component: [selfdestructing](https://github.com/d-le
 premake
 -------
 
-Check out [premake](https://bitbucket.org/premake/premake-dev/wiki/Home) for more info, license and copyrights.
+Check out [premake](https://premake.github.io/) for more info, license and copyrights.
 
-Binaries for Windows, Linux and Mac OS X are included in this project. See the official [premake](https://bitbucket.org/premake/premake-dev/wiki/Home) website if you want to build it or install a different version of it yourself.
+Binaries for Windows, Linux and Mac OS X are included in this project. See the official [premake](https://premake.github.io/) website if you want to build it or install a different version of it yourself.
